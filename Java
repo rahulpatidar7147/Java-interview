@@ -1,0 +1,154 @@
+1.What is static method, variable and Block?
+A static variable is shared among all instances of a class. It is initialized only once at the start of program execution.
+A static method belongs to the class and can be called without creating an object. It cannot access non-static members directly.
+A static block is used to initialize static data. It runs once when the class is loaded.
+
+2.Can we create constructor in interface?
+No, we cannot create a constructor in an interface.Why?
+Interfaces cannot be instantiated directly.
+Constructors are used to initialize objects, but interfaces only declare methods (and constants).
+
+3.Can we create constructor in Abstract class?
+Yes, we can create a constructor in an abstract class in Java.Why?
+because they are meant to be extended by subclasses.
+The constructor of an abstract class is called when a concrete subclass object is created.
+
+4.What is the Functional Interface?
+An Interface that contains exactly one abstract method is known as functional interface. It can have any number of defaults, static methods but can contain only one abstract method.
+
+5.What is a marker interface?
+An Interface is recognized as an empty interface (no field or methods) it is called a marker interface. Examples of marker interfaces are Serializable, Cloneable, and Remote interfaces. 
+
+6.What is predicate in java?
+Predicate represents a boolean-valued function that takes one argument and returns a boolean result.This interface is commonly used for defining conditions or filters when working with collections or performing other conditional checks. The Predicate interface has one abstract method and that is test(T t).
+
+7.Internal working of HashMap ?
+A HashMap is a data structure that stores key-value pairs using a hash table. It's designed for efficient retrieval of values based on their keys. The core idea is that each key is passed through a hash function, which generates an integer hash code. This hash code is then used to calculate an index, which determines the bucket in the hash table where the key-value pair will be stored.
+To handle collisions (when different keys produce the same hash code), HashMap uses separate chaining. This means that each bucket contains a linked list of key-value pairs. When you add a new key-value pair, the hash code is calculated, the bucket is found, and the new pair is added to the end of the linked list. If the key already exists, the value is updated.
+When you retrieve a value, the hash code is calculated, the bucket is found, and then the linked list is traversed until the key is found. The corresponding value is then returned.
+
+8.How does Garbage collection work in java?
+Java's Garbage Collection (GC) is an automatic memory management process that reclaims memory occupied by objects no longer in use by the application.
+It primarily works on the principle of reachability: an object is considered 'garbage' if there are no active references pointing to it from 'GC Roots' (like active threads or static variables).
+Java objects are stored in the heap memory.
+
+9.Difference between Request Scope and Prototype Scope in Spring
+Request scope creates one bean instance per HTTP request (only for web apps).
+Prototype scope creates a new bean instance every time it is requested from the container.
+
+10.What is the Java Memory Model (JMM)?
+The Java Memory Model (JMM) defines how threads interact with memory in a concurrent Java application. It specifies the rules for how changes made by one thread to shared variables are guaranteed to be visible to other threads.
+
+
+11.Difference between method overloading and overriding?
+Overloading: Same method name, different parameters, same class. Return type can differ.
+Overriding: Same method signature, in subclass, to change behavior. Return type must be same or subtype.
+
+12.Can overloaded methods have different parameters and return type?
+Yes — parameters must differ, return type can differ, but return type alone is not enough to overload.
+13.What is the difference between abstraction and interface?
+Feature	Abstract Class	Interface
+Methods	Can have both abstract and concrete (implemented) methods.	Until Java 7: only abstract methods (no body). From Java 8+: can have default and static methods with implementation.
+Fields/Variables	Can have instance variables (non-final).	Variables are implicitly public static final (constants). No instance variables allowed.
+Multiple Inheritance	A class can extend only one abstract class (single inheritance).	A class can implement multiple interfaces (multiple inheritance of type).
+Constructors	Can have constructors.	Cannot have constructors.
+Access Modifiers for Methods	Can have any access modifier (public, protected, private).	Methods are implicitly public (except private methods allowed from Java 9).
+When to use	To share common base behavior/state among related classes.	To define a contract for unrelated classes to implement.
+Keyword to declare	abstract class	interface
+
+
+
+
+20.  How to access that variable is Java purely object-oriented?
+Java is not purely object-oriented because it supports primitive data types like int, float, char, etc., which are not objects. In a purely object-oriented language, everything must be an object.
+
+21. Why do we need wrapper classes?
+Wrapper classes in Java allow us to use primitive types as objects, which is  essential for working with collections, using utility methods, and handling null values—all while enabling autoboxing for convenience.
+Java supports autoboxing (converting primitive to object automatically) and unboxing (object to primitive), making it easier to work with wrapper classes seamlessly.
+
+23. Ways to Create a Thread in Java
+There are two primary ways to create a thread in Java:
+By Extending the Thread class
+By Implementing the Runnable interface
+24. How microservices communicate with each other?
+Microservices communicate using two main types of communication patterns:
+Synchronous Communication :  synchronous communication is done using REST APIs with tools like RestTemplate or Feign clients
+Asynchronous Communication:  For asynchronous communication, Spring Boot supports messaging with Kafka or RabbitMQ using Spring Cloud Stream.
+
+25. Why is String immutable in Java?
+String is immutable means once a String object is created, its value cannot be changed.
+Key reasons for String immutability:
+Security: Strings are used in sensitive areas like file paths, network connections, usernames, passwords, and more. If Strings were mutable, someone could change the value, compromising security.
+String Pool Optimization: Java uses a String Pool to store literal strings to save memory. Since strings are immutable, multiple references can safely point to the same object without risk of modification.
+Thread Safety: Immutable objects are thread-safe. Multiple threads can share and read the same String instance without synchronization concerns.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Which Java version you are using ? and features ?
+Currently we are using java 17 in our projects and key features are introduce in java 17 is :
+> Pattern Matching for switch : Instead of traditional switch on just values, this version lets match types directly.
+> Sealed Classes : Sealed classes restrict which other classes or interfaces can extend or implement them.
+This improves control, security, and readability in class hierarchies.
+What difference b/w intermediate Operation and terminal operation?
+Intermediate operations in Java Streams are those that transform or filter the data and always return a new stream, allowing multiple operations to be chained together. They are lazy, meaning no actual processing happens until a terminal operation is invoked. Examples include methods like filter(), map(), and sorted(). 
+
+On the other hand, terminal operations mark the end of the stream pipeline and trigger the processing of all intermediate operations. They produce a result or side-effect and do not return a stream. Common terminal operations are collect(), forEach(), count(), and reduce().
+
+
+
+
+
+
+What are the method in object class?
+Here are the key methods in Java's Object class:
+equals(Object obj): Determines if two objects are "equal" based on their content (or identity). 
+hashCode(): Returns an integer hash code value for the object. toString(): Returns a string representation of the object. 
+getClass(): Returns the Class object representing the class of the object.
+clone(): Creates and returns a copy of the object. 
+finalize(): Called by the garbage collector when the object is about to be reclaimed. Generally discouraged from use; unpredictable timing.
+notify(): Wakes up a single thread that is waiting on this object's monitor.
+notifyAll(): Wakes up all threads that are waiting on this object's monitor.
+wait(): Causes the current thread to wait until another thread invokes notify() or notifyAll() for this object. 
+
+
+
+
+
+What is default method?
+Allow adding new methods to interfaces without breaking existing implementations, providing a default implementation that implementing classes can override.
+
+Why Default Methods Introduced?
+To add methods to interfaces without forcing all implementers to update code
+
+What is the Stream API?
+The Stream API is used to process collections of objects and Enable us to perform operations like filtering, mapping, reducing and sorting.
+There are two types of Operations in Streams:
+Intermediate Operations : Intermediate operations process data and return another stream, allowing more operations to be chained.
+Terminal Operations : Terminal Operations are the type of Operations that return the result. Example- collect(),forEach(),count(),findFirst()
+
+
+What is the Optional class?
+Optional is a container object used to avoid NullPointerException. It represents a value that may or may not be present.
+
+What is the use of serialversion uuid ?
+In Java, the serialVersionUID is a unique identifier for a serializable class. The primary purpose of serialVersionUID is to ensure that the serialized form of a class is compatible between different versions of that class.
+
+Difference between Comparable and Comparator?
+Comparable is used to define the natural/default sorting of a class. It provides the compareTo() method and the sorting logic is written inside the class itself. Only one sorting rule can be defined.
+Comparator is used to define custom or multiple sorting orders. It provides the compare() method and the sorting logic is written in a separate class, so you can create multiple comparators without modifying the original class.
