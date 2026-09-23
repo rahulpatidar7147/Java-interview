@@ -1,0 +1,151 @@
+ABSTRACT CLASS + INHERITANCE + METHOD OVERRIDING
+abstract class Animal {
+
+    Animal() {
+        System.out.println("Animal constructor");
+    }
+
+    // Same method in Animal and Dog
+    void sound() {
+        System.out.println("Animal sound");
+    }
+
+    // Method only in Animal
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+class Dog extends Animal {
+
+    Dog() {
+        System.out.println("Dog constructor");
+    }
+
+    // Same method - overriding
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    // Method only in Dog
+    void run() {
+        System.out.println("Dog runs");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Animal d = new Dog();
+
+        d.sound();  // Dog barks
+        d.eat();    // Animal eats
+
+        // d.run(); // Compile Error
+    }
+}
+
+
+OUTPUT:
+
+Animal constructor
+Dog constructor
+Dog barks
+Animal eats
+
+
+IMPORTANT POINTS:
+
+1. Animal is an abstract class.
+   We cannot create an object directly:
+   
+   Animal a = new Animal();  // Compile Error
+
+
+2. We can create a Dog object and store it in an Animal reference:
+
+   Animal d = new Dog();
+
+
+3. When "new Dog()" is executed, the parent constructor
+   is called first, then the child constructor.
+
+   Animal constructor
+   ↓
+   Dog constructor
+
+
+4. The Dog constructor implicitly calls:
+
+   super();
+
+   So:
+
+   Dog() {
+       super();
+       System.out.println("Dog constructor");
+   }
+
+
+5. sound() exists in both Animal and Dog.
+   Dog overrides Animal's sound() method.
+
+   d.sound();
+
+   Output:
+   Dog barks
+
+   This is Runtime Polymorphism / Dynamic Method Dispatch.
+
+
+6. eat() exists only in Animal.
+
+   d.eat();
+
+   Output:
+   Animal eats
+
+   Dog inherits this method from Animal.
+
+
+7. run() exists only in Dog.
+
+   d.run();  // Compile Error
+
+   Why?
+   Because the reference type is Animal.
+
+   Animal d = new Dog();
+
+   Reference type = Animal
+   Actual object type = Dog
+
+
+8. To access Dog-specific methods, we can cast:
+
+   Dog dog = (Dog) d;
+
+   dog.run();     // Dog runs
+   dog.sound();   // Dog barks
+   dog.eat();     // Animal eats
+
+
+KEY RULE:
+
+Reference type decides:
+→ Which methods are accessible at compile time.
+
+Actual object type decides:
+→ Which overridden method executes at runtime.
+
+
+Animal d = new Dog();
+   ↑          ↑
+Reference    Actual
+Type         Object Type
+
+Animal → determines accessibility
+Dog    → determines overridden method execution
+
+==================================
