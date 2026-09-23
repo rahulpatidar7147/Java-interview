@@ -149,3 +149,29 @@ Animal → determines accessibility
 Dog    → determines overridden method execution
 
 ==================================
+
+
+class Parent {
+    void method() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void method() {
+        System.out.println("Child");
+    }
+
+    void newMethod() {
+        System.out.println("New method");
+    }
+}
+
+Parent p = new Child();
+
+p.method();      // Child → overridden method runs
+// p.newMethod(); // Error → Parent doesn't have newMethod()
+
+
+======================================
